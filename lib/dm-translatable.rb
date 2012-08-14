@@ -127,7 +127,7 @@ module DataMapper
         # Default: :locale
         #
         def translatable_locale locale_attr
-          @translatable[:locale] = translatable_locale_prepared locale
+          @translatable[:locale] = translatable_locale_prepared locale_attr
         end
 
         ###

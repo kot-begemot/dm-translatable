@@ -65,7 +65,7 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_create_with_translation
-    news = News.create :translations => [{ title: "Заголовок", content: "Содержание", locale: "ru"}]
+    news = News.create :translations => [{ :title => "Заголовок", :content => "Содержание", :locale => "ru"}]
 
     assert news.saved?
 
@@ -77,8 +77,8 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_create_with_translation_with_multiple_locales
-    news = News.create :translations => [{ title: "Заголовок", content: "Содержание", locale: "ru"},
-      {title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{ :title => "Заголовок", :content => "Содержание", :locale => "ru"},
+      {:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
     assert news.saved?
 
@@ -96,8 +96,8 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_access_of_default_translation
-    news = News.create :translations => [{title: "Заголовок", content: "Содержание", locale: "ru"},
-      {title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{:title => "Заголовок", :content => "Содержание", :locale => "ru"},
+      {:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
     assert news.saved?
 
@@ -106,8 +106,8 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_access_of_other_translation
-    news = News.create :translations => [{title: "Заголовок", content: "Содержание", locale: "ru"},
-      {title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{:title => "Заголовок", :content => "Содержание", :locale => "ru"},
+      {:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
     assert news.saved?
 
@@ -118,22 +118,22 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_adding_the_translation
-    news = News.create :translations => [{title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
     assert news.saved?
 
-    t_news = news.translations.create title: "Заголовок", content: "Содержание",locale: "ru"
+    t_news = news.translations.create :title => "Заголовок", :content => "Содержание",:locale => "ru"
 
     assert t_news.saved?
     assert t_news.saved?
   end
 
   def test_getting_different_translations
-    news = News.create :translations => [{title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
     
     assert news.saved?
 
-    t_news = news.translations.create title: "Заголовок", content: "Содержание",locale: "ru"
+    t_news = news.translations.create :title => "Заголовок", :content => "Содержание",:locale => "ru"
     assert t_news.saved?
 
     assert_equal "Resent News", news.title
@@ -147,8 +147,8 @@ class TestDmTranslatable < Test::Unit::TestCase
   end
 
   def test_access_of_other_translation
-    news = News.create :translations => [{title: "Заголовок", content: "Содержание", locale: "ru"},
-      {title: "Resent News", content: "That is where the text goes", locale: "en"}]
+    news = News.create :translations => [{:title => "Заголовок", :content => "Содержание", :locale => "ru"},
+      {:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
     assert news.saved?
 
