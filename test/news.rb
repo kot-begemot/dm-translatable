@@ -26,8 +26,8 @@ class News
   belongs_to  :author
 
   is :translatable do
-    translatable_property  :title,    String,   required: true, unique: true
-    translatable_property  :content,  Text,     required: true
+    translatable_property  :title,    String, :required => true, :unique => true
+    translatable_property  :content,  Text,   :required => true
   end
 end
 

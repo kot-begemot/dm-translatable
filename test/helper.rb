@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler'
 if RUBY_VERSION >= '1.9.0'
-  require "debugger", "~> 1.1.3"
+  require "debugger"
 else
   require 'ruby-debug'
 end
