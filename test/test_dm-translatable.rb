@@ -146,7 +146,7 @@ class TestDmTranslatable < Test::Unit::TestCase
     ::I18n.locale = ::I18n.default_locale
   end
 
-  def test_access_of_other_translation
+  def test_access_unexisting_translation
     news = News.create :translations => [{:title => "Заголовок", :content => "Содержание", :locale => "ru"},
       {:title => "Resent News", :content => "That is where the text goes", :locale => "en"}]
 
