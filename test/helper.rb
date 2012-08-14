@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler'
+require 'debugger'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -13,5 +15,9 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'dm-translatable'
 
+require File.expand_path("support/data_mapper", File.dirname(__FILE__))
+require File.expand_path("support/database_cleaner", File.dirname(__FILE__))
+
 class Test::Unit::TestCase
+  include OrmSetup
 end

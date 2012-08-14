@@ -1,6 +1,72 @@
-= dm-translatable
+== dm-translatable
 
-Description goes here.
+Whenever you have to deal with multilingual project, where users may fill the post
+in different languages, or you have to provide the content in the same way, this
+gem will save your day.
+
+== What it does?
+
+This gem interferes heavily with I18n.
+First you need to do is to define the model that accepts multilingual context (there
+might me more than one of them). There you have to specify the fields that are translatable
+and some other details.
+Well,that is pretty much it. Now you can create a model with translations, and
+switching current locale you will get different translations.
+If there is no translation available, you will get nil.
+
+Check out the examples below.
+
+== Examples
+
+Examples of code:
+
+   class TranslatedNews
+     include DataMapper::Resource
+
+     property :id,         Serial
+
+     attr_accessible :title, :content
+   end
+
+   class News
+     include DataMapper::Resource
+
+     property :id,         Serial
+     property :author_id,  Integer,  required: true
+
+     is :translatable do
+       translatable_property  :title,    String,   required: true, unique: true
+       translatable_property  :content,  Text,     required: true
+       translatable_model 'TranslatedNews'
+       translatable_origin :origin_id
+     end
+
+   end
+
+ An example of application:
+
+   news = News.create :translations => [{title: "Resent News", content: "That is where the text goes", locale: "en"}]
+   news.translations.create title: "Заголовок", content: "Содержание",locale: "ru"
+
+   news.content
+   # => "That is where the text goes"
+
+   ::I18n.locale = "ru"
+   news.content
+   # => "Сюди идет текст"
+
+   ::I18n.locale = "de"
+   news.content
+   # => nil
+
+   ::I18n.locale = ::I18n.default_locale
+   news.content
+   # => "That is where the text goes"
+
+== NB! Errors handling
+
+Even if the translation was invalid(eg. Locale was missing) the original model will still be saved.
+So later you'll have to +UPDATE+ it
 
 == Contributing to dm-translatable
  
