@@ -1,5 +1,7 @@
 == dm-translatable
 
+{<img src="https://secure.travis-ci.org/kot-begemot/dm-translatable.png" />}[http://travis-ci.org/kot-begemot/dm-translatable]
+
 Whenever you have to deal with multilingual project, where users may fill the post
 in different languages, or you have to provide the content in the same way, this
 gem will save your day.
