@@ -185,7 +185,7 @@ module DataMapper
 
           @translatable[:model].module_eval <<-RUBY, __FILE__, __LINE__ + 1
             property :#{@translatable[:locale]}, String, :required => true
-            property :#{@translatable[:origin]}_id, String, :required => true
+            property :#{@translatable[:origin]}_id, Integer, :required => true
 
             belongs_to :#{@translatable[:origin]}, "#{self.name}"
 
