@@ -1,6 +1,10 @@
 require 'rubygems'
 require 'bundler'
-require 'debugger'
+if RUBY_VERSION >= '1.9.0'
+  require "debugger", "~> 1.1.3"
+else
+  require 'ruby-debug'
+end
 
 begin
   Bundler.setup(:default, :development)
